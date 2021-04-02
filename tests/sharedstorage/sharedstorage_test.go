@@ -14,7 +14,7 @@ import (
 
 var flagSharestorage bool
 
-const cacheTime = time.Second
+const cacheTime = time.Second + 100*time.Millisecond
 
 func TestMain(m *testing.M) {
 	ret := 0
