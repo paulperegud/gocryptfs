@@ -56,7 +56,7 @@ func (tc *testCase) cleanup() {
 // mountSharedstorage mounts `cipherdir` on `mnt` with or without the
 // `-sharedstorage` flag, depending on the global var `flagSharestorage`.
 func mountSharedstorage(t *testing.T, cipherdir string, mnt string) {
-	args := []string{"-extpass=echo test"}
+	args := []string{"-extpass=echo test", "-fusedebug"}
 	if flagSharestorage {
 		args = append(args, "-sharedstorage")
 	}

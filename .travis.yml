@@ -29,15 +29,16 @@ before_install:
   - sudo chown root:$USER /etc/fuse.conf
 
 script:
-  - openssl version
-  - df -Th / /tmp
-  - env GO111MODULE=on go build
-  - ./build-without-openssl.bash
+#  - openssl version
+#  - df -Th / /tmp
+#  - env GO111MODULE=on go build
+#  - ./build-without-openssl.bash
   - ./build.bash
-  - ./gocryptfs -speed
-  - ./test.bash
-  - make root_test
-  - ./crossbuild.bash
-  - echo "rebuild with locked dependencies"
-  - go mod vendor
-  - ./build.bash -mod=vendor
+  - go test -v ./tests/sharedstorage
+#  - ./gocryptfs -speed
+#  - ./test.bash
+#  - make root_test
+#  - ./crossbuild.bash
+#  - echo "rebuild with locked dependencies"
+#  - go mod vendor
+#  - ./build.bash -mod=vendor
