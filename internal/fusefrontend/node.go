@@ -133,7 +133,7 @@ func (n *Node) Create(ctx context.Context, name string, flags uint32, mode uint3
 	ch := n.newChild(ctx, &st, out)
 
 	f := os.NewFile(uintptr(fd), cName)
-	return ch, NewFile(f, rn, &st), 0, 0
+	return ch, NewFile(f, rn, &st), fuse.FOPEN_DIRECT_IO, 0
 }
 
 // Unlink - FUSE call. Delete a file.
@@ -221,6 +221,7 @@ func (n *Node) Open(ctx context.Context, flags uint32) (fh fs.FileHandle, fuseFl
 	}
 	f := os.NewFile(uintptr(fd), cName)
 	fh = NewFile(f, rn, &st)
+	fuseFlags = fuse.FOPEN_DIRECT_IO
 	return
 }
 
